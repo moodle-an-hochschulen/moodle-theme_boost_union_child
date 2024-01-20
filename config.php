@@ -18,36 +18,57 @@
  * Theme Boost Union Child - Theme config
  *
  * @package    theme_boost_union_child
+ * @copyright  2024 Alexander Bias <bias@alexanderbias.de>
+ *             based on code by Lars Bonczek
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$THEME->name = 'boost_union_child';
-$THEME->parents = ['boost_union','boost'];
-$THEME->prescsscallback = 'theme_boost_union_child_get_pre_scss';
-$THEME->scss = function() {
-    return theme_boost_union_child_get_main_scss_content();
-};
-// Note: This is necessary as long as MDL-77657 isn't done, as the order for grandchild themes is mixed up
-$THEME->extrascsscallback = 'theme_boost_union_child_get_extra_scss';
-# This is for fallback compiled scss if compilation fails (use Boost Union's)
-$THEME->precompiledcsscallback = 'theme_boost_union_get_precompiled_css';
-# We don't provide our own fallback CSS file
-$THEME->usefallback = false;
+// @codingStandardsIgnoreFile
+// Let codechecker ignore this file. It would complain about a missing login check.
 
-// The $THEME->layouts setting is not duplicated here as they are properly inherited from theme_boost_union.
-// Note: layouts are taken youngest to oldest, first found
-$THEME->enable_dock = false;
-$THEME->yuicssmodules = [];
+// As a start, inherit the whole theme config from Boost Union.
+// This move will save us from duplicating all lines from Boost Union's config.php into Boost Union Child's config.php.
+require_once($CFG->dirroot . '/theme/boost_union/config.php');
+
+// Then, we require Boost Union Child's locallib.php to make sure that it's always loaded.
+require_once($CFG->dirroot . '/theme/boost_union_child/locallib.php');
+
+// Next, we overwrite only the settings which differ between Boost Union and Boost Union Child.
+$THEME->name = 'boost_union_child';
+$THEME->scss = function($theme) {
+    return theme_boost_union_child_get_main_scss_content($theme);
+};
+$THEME->parents = ['boost_union','boost'];
+$THEME->extrascsscallback = 'theme_boost_union_child_get_extra_scss';
+$THEME->prescsscallback = 'theme_boost_union_child_get_pre_scss';
+
+// We need to duplicate the rendererfactory even if it is set to the same value as in Boost Union.
+// The theme_config::get_renderer() method needs it to be directly in the theme_config object.
 $THEME->rendererfactory = 'theme_overridden_renderer_factory';
-$THEME->requiredblocks = '';
-$THEME->addblockposition = BLOCK_ADDBLOCK_POSITION_FLATNAV;
-$THEME->iconsystem = \core\output\icon_system::FONTAWESOME;
-$THEME->haseditswitch = true;
-$THEME->usescourseindex = true;
-$THEME->removedprimarynavitems = explode(',', get_config('theme_boost_union', 'hidenodesprimarynavigation'));
-// By default, all boost theme do not need their titles displayed.
-$THEME->activityheaderconfig = [
-    'notitle' => true
-];
+
+// Lastly, we replicate some settings from Boost Union at runtime into Boost Union Child's settings.
+// This becomes necessary if Moodle core code accesses a theme setting at $this->page->theme->settings->*.
+// In this case, the setting must exist in the currently active theme, otherwise it won't be found.
+// While Boost Union duplicates all settings from Boost Core and does not suffer from this issue,
+// it would be quite ugly to duplicate all of these settings again to Boost Union Child.
+// Currently, this affects these Boost Core settings:
+// unaddableblocks - called from blocklib.php.
+$unaddableblocks = get_config('theme_boost_union', 'unaddableblocks');
+if (!empty($unaddableblocks)) {
+    $THEME->settings->unaddableblocks = $unaddableblocks;
+}
+unset($unaddableblocks);
+// scss - called in theme_boost_get_extra_scss.
+$scss = get_config('theme_boost_union', 'scss');
+if (!empty($scss)) {
+    $THEME->settings->scss = $scss;
+}
+unset($scss);
+// scsspre - called in theme_boost_get_pre_scss.
+$scsspre = get_config('theme_boost_union', 'scsspre');
+if (!empty($scsspre)) {
+    $THEME->settings->scsspre = $scsspre;
+}
+unset($scsspre);

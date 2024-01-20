@@ -18,47 +18,105 @@
  * Theme Boost Union Child - Library
  *
  * @package    theme_boost_union_child
+ * @copyright  2023 Daniel Poggenpohl <daniel.poggenpohl@fernuni-hagen.de> and Alexander Bias <bias@alexanderbias.de>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+// Constants which are use throughout this theme.
+define('THEME_BOOST_UNION_CHILD_SETTING_INHERITANCE_INHERIT', 0);
+define('THEME_BOOST_UNION_CHILD_SETTING_INHERITANCE_DUPLICATE', 1);
+
 /**
-* Returns the main SCSS content.
-* @return string
-*/
-function theme_boost_union_child_get_main_scss_content():string {
+ * Returns the main SCSS content.
+ *
+ * @param theme_config $theme The theme config object.
+ * @return string
+ */
+function theme_boost_union_child_get_main_scss_content($theme) {
     global $CFG;
-    // Reuse the scss of Boost Union to be able to just use Boost Union's settings
+
+    // Require the necessary libraries.
+    require_once($CFG->dirroot . '/theme/boost_union/lib.php');
+
+    // As a start, get the compiled main SCSS from Boost Union.
+    // This way, Boost Union Child will ship the same SCSS code as Boost Union itself.
     $scss = theme_boost_union_get_main_scss_content(theme_config::load('boost_union'));
+
+    // And add Boost Union Child's main SCSS file to the stack.
     $scss .= file_get_contents($CFG->dirroot . '/theme/boost_union_child/scss/post.scss');
+
     return $scss;
 }
 
 /**
- * Note: This is necessary if we just want to use the configured Boost Union settings
- *  and we don't want to reimplement them.
- *  Although theme_boost_union_get_pre_scss gets called earlier,
- *  $theme there is this theme which doesn't necessarily reimplement Boost Union's settings.
- *
  * Get SCSS to prepend.
  *
+ * @param theme_config $theme The theme config object.
  * @return string
  */
-function theme_boost_union_child_get_pre_scss():string {
-    return theme_boost_union_get_pre_scss(theme_config::load('boost_union'));
+function theme_boost_union_child_get_pre_scss($theme) {
+    global $CFG;
+
+    // Require the necessary libraries.
+    require_once($CFG->dirroot . '/theme/boost_union/lib.php');
+
+    // As a start, initialize the Pre SCSS code with an empty string.
+    $scss = '';
+
+    // Then, if configured, get the compiled pre SCSS code from Boost Union.
+    // This should not be necessary as Moodle core calls the *_get_pre_scss() functions from all parent themes as well.
+    // However, as soon as Boost Union would use $theme->settings in this function, $theme would be this theme here and
+    // not Boost Union. The Boost Union developers are aware of this topic, but faults can always happen.
+    // If such a fault happens, the Boost Union Child administrator can switch the inheritance to 'Duplicate'.
+    // This way, we will add the pre SCSS code with the explicit use of the Boost Union configuration to the stack.
+    $inheritanceconfig = get_config('theme_boost_union_child', 'prescssinheritance');
+    if ($inheritanceconfig == THEME_BOOST_UNION_CHILD_SETTING_INHERITANCE_DUPLICATE) {
+        $scss .= theme_boost_union_get_pre_scss(theme_config::load('boost_union'));
+    }
+
+    // And add Boost Union Child's pre SCSS file to the stack.
+    $scss .= file_get_contents($CFG->dirroot . '/theme/boost_union_child/scss/pre.scss');
+
+    /**********************************************************
+     * EXTENSION POINT:
+     * Compose and add additional pre-SCSS code here.
+     * It will be added on top of Boost Union's pre-SCSS code.
+     *********************************************************/
+
+    return $scss;
 }
 
 /**
- * This is necessary as long as MDL-77657 isn't finished.
- * We need to recreate the extra scss from Boost Union and append it after Boost's extra SCSS overwrote everything.
+ * Inject additional SCSS.
  *
- * Get SCSS to append.
- *
+ * @param theme_config $theme The theme config object.
  * @return string
  */
-function theme_boost_union_child_get_extra_scss():string {
-    // theme_boost_union replicates the boost setting, so we need to use that
-    $boostExtraScss = theme_boost_get_extra_scss(theme_config::load('boost_union'));
-    $boostUnionExtraScss = theme_boost_union_get_extra_scss(theme_config::load('boost_union'));
-    return $boostExtraScss.$boostUnionExtraScss;
-}
+function theme_boost_union_child_get_extra_scss($theme) {
+    global $CFG;
 
+    // Require the necessary libraries.
+    require_once($CFG->dirroot . '/theme/boost_union/lib.php');
+
+    // As a start, initialize the Extra SCSS code with an empty string.
+    $scss = '';
+
+    // Then, if configured, get the compiled extra SCSS code from Boost Union.
+    // This should not be necessary as Moodle core calls the *_get_extra_scss() functions from all parent themes as well.
+    // However, as soon as Boost Union would use $theme->settings in this function, $theme would be this theme here and
+    // not Boost Union. The Boost Union developers are aware of this topic, but faults can always happen.
+    // If such a fault happens, the Boost Union Child administrator can switch the inheritance to 'Duplicate'.
+    // This way, we will add the extra SCSS code with the explicit use of the Boost Union configuration to the stack.
+    $inheritanceconfig = get_config('theme_boost_union_child', 'extrascssinheritance');
+    if ($inheritanceconfig == THEME_BOOST_UNION_CHILD_SETTING_INHERITANCE_DUPLICATE) {
+        $scss .= theme_boost_union_get_extra_scss(theme_config::load('boost_union'));
+    }
+
+    /**********************************************************
+     * EXTENSION POINT:
+     * Compose and add additional SCSS code here.
+     * It will be added on top of Boost Union's SCSS code.
+     *********************************************************/
+
+    return $scss;
+}
