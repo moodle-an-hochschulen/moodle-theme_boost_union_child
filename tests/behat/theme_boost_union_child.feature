@@ -4,15 +4,9 @@ Feature: Extending the theme_boost_union plugin with a child theme
   As developer
   I need to be able to build several kinds of extensions to Boost Union
 
-  Scenario: Skeleton scenario
-    # This Behat scenario is just a skeleton which is ready for extension.
-    # Grunt in Github actions would not be happy with a feature file without any scenario.
-    # Thus, we log in as admin to keep it happy.
+  Scenario: Modify block.mustache template
     When I log in as "admin"
-
-    #################################################################
-    # EXTENSION POINT:
-    # Add your Behat scenarios here.
-    # They will be tested alongside Boost Union's
-    # scenarios in Github Actions.
-    #################################################################
+    And I turn editing mode on
+    And I add the "Admin bookmarks" block
+    Then ".block_admin_bookmarks .footer .block-controls" "css_element" should exist
+    And ".block_admin_bookmarks .card-body > .block-controls" "css_element" should not exist
