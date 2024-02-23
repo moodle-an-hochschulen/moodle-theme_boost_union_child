@@ -24,3 +24,14 @@ Feature: Extending the theme_boost_union plugin with a child theme
   # They will be tested alongside Boost Union's
   # scenarios in Github Actions.
   #################################################################
+
+  Scenario: Modify infobanner-item.mustache template
+    Given the following config values are set as admin:
+      | config             | value                    | plugin            |
+      | infobanner1enabled | yes                      | theme_boost_union |
+      | infobanner1content | "This is a test content" | theme_boost_union |
+      | infobanner1pages   | frontpage                | theme_boost_union |
+      | infobanner1mode    | perp                     | theme_boost_union |
+    When I log in as "admin"
+    And I am on site homepage
+    Then I should see "Boost Union child template content" in the "#themeboostunioninfobanner1" "css_element"
