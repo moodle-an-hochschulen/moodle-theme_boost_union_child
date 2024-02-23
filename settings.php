@@ -109,10 +109,29 @@ if ($hassiteconfig || has_capability('theme/boost_union:configure', context_syst
         // Add tab to settings page.
         $page->add($tab);
 
-        /**********************************************************
-         * EXTENSION POINT:
-         * Add your Boost Union Child settings here.
-         *********************************************************/
+
+        // Create example tab.
+        $tab = new admin_settingpage('theme_boost_union_child_example',
+            get_string('exampletab', 'theme_boost_union_child', null, true));
+
+        // Create example heading.
+        $name = 'theme_boost_union_child/exampleheading';
+        $title = get_string('exampleheading', 'theme_boost_union_child', null, true);
+        $setting = new admin_setting_heading($name, $title, null);
+        $tab->add($setting);
+
+        // Setting: Example setting to set a SCSS variable.
+        $name = 'theme_boost_union_child/examplescssvariable';
+        $title = get_string('examplescssvariablesetting', 'theme_boost_union_child', null, true);
+        $description = get_string('examplescssvariablesetting_desc', 'theme_boost_union_child', null, true);
+        $default = '60px';
+        $setting = new admin_setting_configtext($name, $title, $description, $default);
+        $setting->set_updatedcallback('theme_reset_all_caches');
+        $tab->add($setting);
+
+        // Add tab to settings page.
+        $page->add($tab);
+
 
         // Add settings page to the admin settings category.
         $ADMIN->add('theme_boost_union', $page);

@@ -42,10 +42,13 @@ $string['prescssinheritancesetting_desc'] = 'With this setting, you control if t
 $string['extrascssinheritancesetting'] = 'Extra SCSS inheritance';
 $string['extrascssinheritancesetting_desc'] = 'With this setting, you control if the extra SCSS code from Boost Union should be inherited or duplicated.';
 
-/**************************************************************
- * EXTENSION POINT:
- * Add your language strings for your settings here.
- *************************************************************/
+// Settings: Example tab.
+$string['exampletab'] = 'Example tab';
+// ... Section: Example.
+$string['exampleheading'] = 'Example heading';
+// ... ... Setting: Example setting to set a SCSS variable.
+$string['examplescssvariablesetting'] = 'Example SCSS variable setting';
+$string['examplescssvariablesetting_desc'] = 'With this setting, you see an example how to create a setting in a Boost Union Child theme which allows the admin to configure a SCSS variable without fiddling with SCSS. In this example, we chose to allow you to configure the $navbar-height variable.';
 
 // Privacy API.
 $string['privacy:metadata'] = 'The Boost Union Child theme does not store any personal data about any user.';

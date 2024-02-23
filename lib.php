@@ -77,11 +77,10 @@ function theme_boost_union_child_get_pre_scss($theme) {
     // And add Boost Union Child's pre SCSS file to the stack.
     $scss .= file_get_contents($CFG->dirroot . '/theme/boost_union_child/scss/pre.scss');
 
-    /**********************************************************
-     * EXTENSION POINT:
-     * Compose and add additional pre-SCSS code here.
-     * It will be added on top of Boost Union's pre-SCSS code.
-     *********************************************************/
+    // Set $navbar-height SCSS variable based on the examplescssvariable setting.
+    if (get_config('theme_boost_union_child', 'examplescssvariable')) {
+        $scss .= '$navbar-height: '.get_config('theme_boost_union_child', 'examplescssvariable').";\n";
+    }
 
     return $scss;
 }
