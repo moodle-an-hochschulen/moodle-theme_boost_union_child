@@ -83,6 +83,11 @@ function theme_boost_union_child_get_pre_scss($theme) {
      * It will be added on top of Boost Union's pre-SCSS code.
      *********************************************************/
 
+    // Set $navbar-height SCSS variable based on the examplescssvariable setting.
+    if (get_config('theme_boost_union_child', 'examplescssvariable')) {
+        $scss .= '$navbar-height: ' . get_config('theme_boost_union_child', 'examplescssvariable') . ";\n";
+    }
+
     return $scss;
 }
 
