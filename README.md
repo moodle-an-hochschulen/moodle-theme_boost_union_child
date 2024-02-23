@@ -122,6 +122,14 @@ In the example, we added a text admin setting into a dedicated admin settings ta
 
 The example code is completed by a Behat test which verifies now and forever that the admin setting is doing its job properly.
 
+### Modify a mustache template from Moodle core
+
+In the [extension-modify-mustache-template](https://github.com/moodle-an-hochschulen/moodle-theme_boost_union_child/tree/extension-modify-mustache-template) branch, we prepared some example code which shows you how to modify a mustache template from Moodle core in Boost Union Child.
+
+In the example, we copied the block.mustache template from Moodle core to Boost Union Child and modified in a way that the block controls are shown in the block footer now. The modified template will be used instantly as soon as Boost Union Child is the active theme.
+
+Of course, the example code is completed by a Behat test which verifies now and forever that the modified template is used in Boost Union Child.
+
 ### Call for proposals
 
 If you have another good extension example for Boost Union Child, we would be grateful if you would contribute it!
