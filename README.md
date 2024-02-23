@@ -114,6 +114,14 @@ Extension examples
 
 Developing for Boost Union means to apply similar techniques for every new feature. In this section, we try to collect some of these techniques for you.
 
+### How to allow the admin to configure a SCSS variable with an admin setting
+
+In the [extension-setting-scss-variable](https://github.com/moodle-an-hochschulen/moodle-theme_boost_union_child/tree/extension-setting-scss-variable) branch, we prepared some example code which shows you how allow the admin to configure a SCSS variable with an admin setting and without fiddling with SCSS.
+
+In the example, we added a text admin setting into a dedicated admin settings tab. This setting is evaluated in lib.php where the pre-SCSS code is composed and where, based on the setting, a SCSS variable of Boost Core is overwritten. In this example, we chose to allow you to configure the $navbar-height variable. As a result, you can modify the height of the navbar just from within the admin setting if needed.
+
+The example code is completed by a Behat test which verifies now and forever that the admin setting is doing its job properly.
+
 ### Call for proposals
 
 If you have another good extension example for Boost Union Child, we would be grateful if you would contribute it!
