@@ -87,7 +87,7 @@ To add your local features to Boost Union Child, you can more or less follow all
 
 To help you with the first steps, we have added some markers to Boost Union Child's codebase at the places where you can add your own features. Just search for EXTENSION POINT and you will find the places where you can add your settings, language strings, SCSS code and so on.
 
-In addition to that, have a look at the 'Extensiopn examples' section below.
+In addition to that, have a look at the 'Extension examples' section below.
 
 ### Finishing your grandchild theme (optional)
 
@@ -129,6 +129,15 @@ In the [extension-modify-mustache-template](https://github.com/moodle-an-hochsch
 In the example, we copied the block.mustache template from Moodle core to Boost Union Child and modified in a way that the block controls are shown in the block footer now. The modified template will be used instantly as soon as Boost Union Child is the active theme.
 
 Of course, the example code is completed by a Behat test which verifies now and forever that the modified template is used in Boost Union Child.
+
+### Applying the example code branches
+
+As the example code is provided in a simple git branch, you can just merge the code into the master branch if you like and continue from there:
+
+```
+git checkout master
+git merge extension-setting-scss-variable
+```
 
 ### Call for proposals
 
