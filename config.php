@@ -30,7 +30,9 @@ defined('MOODLE_INTERNAL') || die();
 
 // As a start, inherit the whole theme config from Boost Union.
 // This move will save us from duplicating all lines from Boost Union's config.php into Boost Union Child's config.php.
-require_once($CFG->dirroot . '/theme/boost_union/config.php');
+// This statement uses require (and not require_once) by purpose to make sure that all Boost Union settings are added
+// to the $THEME object even if the Boost Union config was already included in some other place.
+require($CFG->dirroot . '/theme/boost_union/config.php');
 
 // Then, we require Boost Union Child's locallib.php to make sure that it's always loaded.
 require_once($CFG->dirroot . '/theme/boost_union_child/locallib.php');
