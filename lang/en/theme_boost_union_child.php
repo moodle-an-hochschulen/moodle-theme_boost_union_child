@@ -28,6 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 $string['pluginname'] = 'Boost Union Child';
 $string['choosereadme'] = 'This plugin is just a boilerplate template one can use to develop Boost Union child themes.';
 $string['configtitle'] = 'Boost Union Child';
+$string['settingsoverview_buc_desc'] = 'With Boost Union Child, you can customize Boost Union to your own local needs.';
 
 // Settings: General settings tab.
 // ... Section: Inheritance.

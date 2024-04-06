@@ -120,3 +120,21 @@ function theme_boost_union_child_get_extra_scss($theme) {
 
     return $scss;
 }
+
+/**
+ * Callback function for theme_boost_union to allow Boost Union Child to add cards to the Boost Union settings overview page.
+ * This function is expected to return an array of arrays containing values with the keys 'label', 'desc', 'btn' and 'url'.
+ *
+ * @return array
+ */
+function theme_boost_union_child_extend_busettingsoverview() {
+
+    $cards[] = [
+        'label' => get_string('pluginname', 'theme_boost_union_child'),
+        'desc' => get_string('settingsoverview_buc_desc', 'theme_boost_union_child'),
+        'btn' => 'primary',
+        'url' => new \moodle_url('/admin/settings.php', ['section' => 'theme_boost_union_child']),
+    ];
+
+    return $cards;
+}

@@ -32,8 +32,14 @@ if ($hassiteconfig || has_capability('theme/boost_union:configure', context_syst
     // This settings file here is built in a way that it adds another settings page to this existing settings
     // category. You can add all child-theme-specific settings to this settings page here.
 
-    // Avoid that the theme settings page is auto-created.
-    $settings = null;
+    // However, there is still the $settings variable which is expected by Moodle core to be filled with the theme
+    // settings and which is automatically linked from the theme selector page.
+    // To avoid that there appears a broken "Boost Union Child" settings page, we redirect the user to a settings
+    // overview page if he opens this page.
+    $mainsettingspageurl = new moodle_url('/admin/settings.php', ['section' => 'themesettingboost_union_child']);
+    if ($ADMIN->fulltree && $PAGE->has_set_url() && $PAGE->url->compare($mainsettingspageurl)) {
+        redirect(new moodle_url('/admin/settings.php', ['section' => 'theme_boost_union_child']));
+    }
 
     // Create empty settings page structure to make the site administration work on non-admin pages.
     if (!$ADMIN->fulltree) {
