@@ -6,6 +6,7 @@ Changes
 
 ### Rolling release
 
+* 2024-07-23 - Change Moodle-Plugin-CI to run on Moodle Core 4.4 and Boost Union 4.4
 * 2024-07-23 - Make codechecker happy again.
 * 2024-04-06 - Adopt Boost Union Child settings to the settings changes in the upcoming Boost Union v4.3-r11 release and for Moodle 4.4.
 * 2024-03-13 - Make sure that all Boost Union settings are added to the $THEME object even if the Boost Union config was already included in some other place, resolves #3.
