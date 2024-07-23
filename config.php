@@ -25,8 +25,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-// @codingStandardsIgnoreFile
-// Let codechecker ignore this file. It would complain about a missing login check.
+// Let codechecker ignore some sniffs for this file as we do not need a login check here..
+// phpcs:disable moodle.Files.RequireLogin.Missing
 
 // As a start, inherit the whole theme config from Boost Union.
 // This move will save us from duplicating all lines from Boost Union's config.php into Boost Union Child's config.php.
@@ -42,7 +42,7 @@ $THEME->name = 'boost_union_child';
 $THEME->scss = function($theme) {
     return theme_boost_union_child_get_main_scss_content($theme);
 };
-$THEME->parents = ['boost_union','boost'];
+$THEME->parents = ['boost_union', 'boost'];
 $THEME->extrascsscallback = 'theme_boost_union_child_get_extra_scss';
 $THEME->prescsscallback = 'theme_boost_union_child_get_pre_scss';
 
@@ -62,13 +62,13 @@ if (!empty($unaddableblocks)) {
     $THEME->settings->unaddableblocks = $unaddableblocks;
 }
 unset($unaddableblocks);
-// scss - called in theme_boost_get_extra_scss.
+// SCSS - called in theme_boost_get_extra_scss.
 $scss = get_config('theme_boost_union', 'scss');
 if (!empty($scss)) {
     $THEME->settings->scss = $scss;
 }
 unset($scss);
-// scsspre - called in theme_boost_get_pre_scss.
+// SCSSpre - called in theme_boost_get_pre_scss.
 $scsspre = get_config('theme_boost_union', 'scsspre');
 if (!empty($scsspre)) {
     $THEME->settings->scsspre = $scsspre;
