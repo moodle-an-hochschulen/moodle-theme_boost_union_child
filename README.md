@@ -1,7 +1,7 @@
 moodle-theme_boost_union_child
 ==============================
 
-[![Moodle Plugin CI](https://github.com/moodle-an-hochschulen/moodle-theme_boost_union_child/workflows/Moodle%20Plugin%20CI/badge.svg?branch=master)](https://github.com/moodle-an-hochschulen/moodle-theme_boost_union_child/actions?query=workflow%3A%22Moodle+Plugin+CI%22+branch%3Amaster)
+[![Moodle Plugin CI](https://github.com/moodle-an-hochschulen/moodle-theme_boost_union_child/workflows/Moodle%20Plugin%20CI/badge.svg?branch=main)](https://github.com/moodle-an-hochschulen/moodle-theme_boost_union_child/actions?query=workflow%3A%22Moodle+Plugin+CI%22+branch%3Amain)
 
 Boost Union Child is a boilerplate for enhancing Boost Union with custom or local functionality.
 
@@ -132,10 +132,10 @@ Of course, the example code is completed by a Behat test which verifies now and 
 
 ### Applying the example code branches
 
-As the example code is provided in a simple git branch, you can just merge the code into the master branch if you like and continue from there:
+As the example code is provided in a simple git branch, you can just merge the code into the main branch if you like and continue from there:
 
 ```
-git checkout master
+git checkout main
 git merge extension-setting-scss-variable
 ```
 
