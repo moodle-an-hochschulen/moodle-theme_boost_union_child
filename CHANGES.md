@@ -6,6 +6,7 @@ Changes
 
 ### Rolling release
 
+* 2024-08-11 - Updated Moodle Plugin CI to latest upstream recommendations
 * 2024-07-25 - Development: Rename master branch to main, please update your clones.
 * 2024-07-23 - Change Moodle-Plugin-CI to run on Moodle Core 4.4 and Boost Union 4.4
 * 2024-07-23 - Make codechecker happy again.
