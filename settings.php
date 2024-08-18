@@ -52,7 +52,7 @@ if ($hassiteconfig || has_capability('theme/boost_union:configure', context_syst
     }
 
     // Create full settings page structure.
-    // @codingStandardsIgnoreLine
+    // phpcs:disable moodle.ControlStructures.ControlSignature.Found
     else if ($ADMIN->fulltree) {
 
         // Require the necessary libraries.
