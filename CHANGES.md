@@ -6,6 +6,7 @@ Changes
 
 ### Rolling release
 
+* 2024-10-22 - Adopt Boost Union class name changes from Boost Union 4.5, raise the dependency to Boost Union 4.5 likewise.
 * 2024-10-22 - Change Moodle-Plugin-CI to run on Moodle Core 4.5
 * 2024-08-11 - Updated Moodle Plugin CI to latest upstream recommendations
 * 2024-07-25 - Development: Rename master branch to main, please update your clones.

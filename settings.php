@@ -36,9 +36,9 @@ if ($hassiteconfig || has_capability('theme/boost_union:configure', context_syst
     // settings and which is automatically linked from the theme selector page.
     // To avoid that there appears a broken "Boost Union Child" settings page, we redirect the user to a settings
     // overview page if he opens this page.
-    $mainsettingspageurl = new moodle_url('/admin/settings.php', ['section' => 'themesettingboost_union_child']);
+    $mainsettingspageurl = new \core\url('/admin/settings.php', ['section' => 'themesettingboost_union_child']);
     if ($ADMIN->fulltree && $PAGE->has_set_url() && $PAGE->url->compare($mainsettingspageurl)) {
-        redirect(new moodle_url('/admin/settings.php', ['section' => 'theme_boost_union_child']));
+        redirect(new \core\url('/admin/settings.php', ['section' => 'theme_boost_union_child']));
     }
 
     // Create empty settings page structure to make the site administration work on non-admin pages.

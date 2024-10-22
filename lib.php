@@ -29,7 +29,7 @@ define('THEME_BOOST_UNION_CHILD_SETTING_INHERITANCE_DUPLICATE', 1);
 /**
  * Returns the main SCSS content.
  *
- * @param theme_config $theme The theme config object.
+ * @param \core\output\theme_config $theme The theme config object.
  * @return string
  */
 function theme_boost_union_child_get_main_scss_content($theme) {
@@ -40,7 +40,7 @@ function theme_boost_union_child_get_main_scss_content($theme) {
 
     // As a start, get the compiled main SCSS from Boost Union.
     // This way, Boost Union Child will ship the same SCSS code as Boost Union itself.
-    $scss = theme_boost_union_get_main_scss_content(theme_config::load('boost_union'));
+    $scss = theme_boost_union_get_main_scss_content(\core\output\theme_config::load('boost_union'));
 
     // And add Boost Union Child's main SCSS file to the stack.
     $scss .= file_get_contents($CFG->dirroot . '/theme/boost_union_child/scss/post.scss');
@@ -51,7 +51,7 @@ function theme_boost_union_child_get_main_scss_content($theme) {
 /**
  * Get SCSS to prepend.
  *
- * @param theme_config $theme The theme config object.
+ * @param \core\output\theme_config $theme The theme config object.
  * @return string
  */
 function theme_boost_union_child_get_pre_scss($theme) {
@@ -71,7 +71,7 @@ function theme_boost_union_child_get_pre_scss($theme) {
     // This way, we will add the pre SCSS code with the explicit use of the Boost Union configuration to the stack.
     $inheritanceconfig = get_config('theme_boost_union_child', 'prescssinheritance');
     if ($inheritanceconfig == THEME_BOOST_UNION_CHILD_SETTING_INHERITANCE_DUPLICATE) {
-        $scss .= theme_boost_union_get_pre_scss(theme_config::load('boost_union'));
+        $scss .= theme_boost_union_get_pre_scss(\core\output\theme_config::load('boost_union'));
     }
 
     // And add Boost Union Child's pre SCSS file to the stack.
@@ -89,7 +89,7 @@ function theme_boost_union_child_get_pre_scss($theme) {
 /**
  * Inject additional SCSS.
  *
- * @param theme_config $theme The theme config object.
+ * @param \core\output\theme_config $theme The theme config object.
  * @return string
  */
 function theme_boost_union_child_get_extra_scss($theme) {
@@ -109,7 +109,7 @@ function theme_boost_union_child_get_extra_scss($theme) {
     // This way, we will add the extra SCSS code with the explicit use of the Boost Union configuration to the stack.
     $inheritanceconfig = get_config('theme_boost_union_child', 'extrascssinheritance');
     if ($inheritanceconfig == THEME_BOOST_UNION_CHILD_SETTING_INHERITANCE_DUPLICATE) {
-        $scss .= theme_boost_union_get_extra_scss(theme_config::load('boost_union'));
+        $scss .= theme_boost_union_get_extra_scss(\core\output\theme_config::load('boost_union'));
     }
 
     /**********************************************************
@@ -133,7 +133,7 @@ function theme_boost_union_child_extend_busettingsoverview() {
         'label' => get_string('pluginname', 'theme_boost_union_child'),
         'desc' => get_string('settingsoverview_buc_desc', 'theme_boost_union_child'),
         'btn' => 'primary',
-        'url' => new \moodle_url('/admin/settings.php', ['section' => 'theme_boost_union_child']),
+        'url' => new \core\url('/admin/settings.php', ['section' => 'theme_boost_union_child']),
     ];
 
     return $cards;
