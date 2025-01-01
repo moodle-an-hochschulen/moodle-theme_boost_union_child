@@ -138,3 +138,21 @@ function theme_boost_union_child_extend_busettingsoverview() {
 
     return $cards;
 }
+
+/**
+ * Callback function which allows themes to alter the CSS URLs.
+ * We use this function to change the CSS URL to the flavour CSS URL if a flavour applies to the current page.
+ *
+ * @copyright 2024 Alexander Bias <bias@alexanderbias.de>
+ *
+ * @param mixed $urls The CSS URLs (passed as reference).
+ */
+function theme_boost_union_child_alter_css_urls(&$urls) {
+    global $CFG;
+
+    // Require Boost Union library.
+    require_once($CFG->dirroot.'/theme/boost_union/lib.php');
+
+    // Call Boost Union's theme_boost_union_alter_css_urls() function which implements the logic to change the CSS URL for flavours.
+    theme_boost_union_alter_css_urls($urls);
+}
