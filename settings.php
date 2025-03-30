@@ -22,6 +22,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use theme_boost_union\admin_settingspage_tabs_with_tertiary;
+
 defined('MOODLE_INTERNAL') || die();
 
 if ($hassiteconfig || has_capability('theme/boost_union:configure', context_system::instance())) {
@@ -67,9 +69,9 @@ if ($hassiteconfig || has_capability('theme/boost_union:configure', context_syst
                 THEME_BOOST_UNION_SETTING_SELECT_NO => get_string('no'), ];
 
 
-        // Create Boost Union Child settings page with tabs
+        // Create Boost Union Child settings page with tabs and tertiary navigation
         // (and allow users with the theme/boost_union:configure capability to access it).
-        $page = new theme_boost_admin_settingspage_tabs('theme_boost_union_child',
+        $page = new admin_settingspage_tabs_with_tertiary('theme_boost_union_child',
                 get_string('configtitle', 'theme_boost_union_child', null, true),
                 'theme/boost_union:configure');
 
