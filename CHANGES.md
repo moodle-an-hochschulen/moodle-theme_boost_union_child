@@ -6,6 +6,7 @@ Changes
 
 ### Rolling release
 
+* 2025-05-25 - Change Moodle-Plugin-CI to run on Moodle Core 5.0
 * 2025-05-25 - Adopt the screenshot for the theme overview page from Boost Union.
 * 2025-03-30 - Add tertiary navigation to settings page after improvemeht in Boost Union, resolves #7, raise the dependency of Boost Union 4.5 likewise.
 * 2024-12-29 - Support Boost Union's feature to set brand colors (and other SCSS-based things) in flavours
