@@ -35,17 +35,6 @@ $string['configtitle'] = 'Boost Union Child';
 $string['settingsoverview_buc_desc'] = 'With Boost Union Child, you can customize Boost Union to your own local needs.';
 
 // Settings: General settings tab.
-// ... Section: Inheritance.
-$string['inheritanceheading'] = 'Inheritance';
-$string['inheritanceinherit'] = 'Inherit';
-$string['inheritanceduplicate'] = 'Duplicate';
-$string['inheritanceoptionsexplanation'] = 'Most of the time, inheriting will be perfectly fine. However, it may happen that imperfect code is integrated into Boost Union which prevents simple SCSS inheritance for particular Boost Union features. If you encounter any issues with Boost Union features which seem not to work in Boost Union Child as well, try to switch this setting to \'Dupliate\' and, if this solves the problem, report an issue on Github (see the README.md file for details how to report an issue).';
-// ... ... Setting: Pre SCSS inheritance setting.
-$string['prescssinheritancesetting'] = 'Pre SCSS inheritance';
-$string['prescssinheritancesetting_desc'] = 'With this setting, you control if the pre SCSS code from Boost Union should be inherited or duplicated.';
-// ... ... Setting: Extra SCSS inheritance setting.
-$string['extrascssinheritancesetting'] = 'Extra SCSS inheritance';
-$string['extrascssinheritancesetting_desc'] = 'With this setting, you control if the extra SCSS code from Boost Union should be inherited or duplicated.';
 
 /**************************************************************
  * EXTENSION POINT:

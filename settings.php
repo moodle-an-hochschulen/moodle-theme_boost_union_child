@@ -80,40 +80,6 @@ if ($hassiteconfig || has_capability('theme/boost_union:configure', context_syst
         $tab = new admin_settingpage('theme_boost_union_child_general',
                 get_string('generalsettings', 'theme_boost', null, true));
 
-        // Create inheritance heading.
-        $name = 'theme_boost_union_child/inheritanceheading';
-        $title = get_string('inheritanceheading', 'theme_boost_union_child', null, true);
-        $setting = new admin_setting_heading($name, $title, null);
-        $tab->add($setting);
-
-        // Prepare inheritance options.
-        $inheritanceoptions = [
-                THEME_BOOST_UNION_CHILD_SETTING_INHERITANCE_INHERIT =>
-                        get_string('inheritanceinherit', 'theme_boost_union_child'),
-                THEME_BOOST_UNION_CHILD_SETTING_INHERITANCE_DUPLICATE =>
-                        get_string('inheritanceduplicate', 'theme_boost_union_child'),
-        ];
-
-        // Setting: Pre SCSS inheritance setting.
-        $name = 'theme_boost_union_child/prescssinheritance';
-        $title = get_string('prescssinheritancesetting', 'theme_boost_union_child', null, true);
-        $description = get_string('prescssinheritancesetting_desc', 'theme_boost_union_child', null, true).'<br />'.
-                get_string('inheritanceoptionsexplanation', 'theme_boost_union_child', null, true);
-        $setting = new admin_setting_configselect($name, $title, $description,
-                THEME_BOOST_UNION_CHILD_SETTING_INHERITANCE_INHERIT, $inheritanceoptions);
-        $setting->set_updatedcallback('theme_reset_all_caches');
-        $tab->add($setting);
-
-        // Setting: Extra SCSS inheritance setting.
-        $name = 'theme_boost_union_child/extrascssinheritance';
-        $title = get_string('extrascssinheritancesetting', 'theme_boost_union_child', null, true);
-        $description = get_string('extrascssinheritancesetting_desc', 'theme_boost_union_child', null, true).'<br />'.
-                get_string('inheritanceoptionsexplanation', 'theme_boost_union_child', null, true);
-        $setting = new admin_setting_configselect($name, $title, $description,
-                THEME_BOOST_UNION_CHILD_SETTING_INHERITANCE_INHERIT, $inheritanceoptions);
-        $setting->set_updatedcallback('theme_reset_all_caches');
-        $tab->add($setting);
-
         // Add tab to settings page.
         $page->add($tab);
 
