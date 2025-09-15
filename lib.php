@@ -22,10 +22,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-// Constants which are use throughout this theme.
-define('THEME_BOOST_UNION_CHILD_SETTING_INHERITANCE_INHERIT', 0);
-define('THEME_BOOST_UNION_CHILD_SETTING_INHERITANCE_DUPLICATE', 1);
-
 /**
  * Returns the main SCSS content.
  *
@@ -40,7 +36,7 @@ function theme_boost_union_child_get_main_scss_content($theme) {
 
     // As a start, get the compiled main SCSS from Boost Union.
     // This way, Boost Union Child will ship the same SCSS code as Boost Union itself.
-    $scss = theme_boost_union_get_main_scss_content(\core\output\theme_config::load('boost_union'));
+    $scss = theme_boost_union_get_main_scss_content($theme);
 
     // And add Boost Union Child's main SCSS file to the stack.
     $scss .= file_get_contents($CFG->dirroot . '/theme/boost_union_child/scss/post.scss');
@@ -57,22 +53,11 @@ function theme_boost_union_child_get_main_scss_content($theme) {
 function theme_boost_union_child_get_pre_scss($theme) {
     global $CFG;
 
-    // Require the necessary libraries.
-    require_once($CFG->dirroot . '/theme/boost_union/lib.php');
+    // NOTE: $THEME->prescsscallback was already called from all parent themes with $THEME->settings
+    // object that contains settings of this theme merged with parent themes settings.
 
     // As a start, initialize the Pre SCSS code with an empty string.
     $scss = '';
-
-    // Then, if configured, get the compiled pre SCSS code from Boost Union.
-    // This should not be necessary as Moodle core calls the *_get_pre_scss() functions from all parent themes as well.
-    // However, as soon as Boost Union would use $theme->settings in this function, $theme would be this theme here and
-    // not Boost Union. The Boost Union developers are aware of this topic, but faults can always happen.
-    // If such a fault happens, the Boost Union Child administrator can switch the inheritance to 'Duplicate'.
-    // This way, we will add the pre SCSS code with the explicit use of the Boost Union configuration to the stack.
-    $inheritanceconfig = get_config('theme_boost_union_child', 'prescssinheritance');
-    if ($inheritanceconfig == THEME_BOOST_UNION_CHILD_SETTING_INHERITANCE_DUPLICATE) {
-        $scss .= theme_boost_union_get_pre_scss(\core\output\theme_config::load('boost_union'));
-    }
 
     // And add Boost Union Child's pre SCSS file to the stack.
     $scss .= file_get_contents($CFG->dirroot . '/theme/boost_union_child/scss/pre.scss');
@@ -95,22 +80,11 @@ function theme_boost_union_child_get_pre_scss($theme) {
 function theme_boost_union_child_get_extra_scss($theme) {
     global $CFG;
 
-    // Require the necessary libraries.
-    require_once($CFG->dirroot . '/theme/boost_union/lib.php');
+    // NOTE: $THEME->extrascsscallback was already called from all parent themes with $THEME->settings
+    // object that contains settings of this theme merged with parent themes settings.
 
     // As a start, initialize the Extra SCSS code with an empty string.
     $scss = '';
-
-    // Then, if configured, get the compiled extra SCSS code from Boost Union.
-    // This should not be necessary as Moodle core calls the *_get_extra_scss() functions from all parent themes as well.
-    // However, as soon as Boost Union would use $theme->settings in this function, $theme would be this theme here and
-    // not Boost Union. The Boost Union developers are aware of this topic, but faults can always happen.
-    // If such a fault happens, the Boost Union Child administrator can switch the inheritance to 'Duplicate'.
-    // This way, we will add the extra SCSS code with the explicit use of the Boost Union configuration to the stack.
-    $inheritanceconfig = get_config('theme_boost_union_child', 'extrascssinheritance');
-    if ($inheritanceconfig == THEME_BOOST_UNION_CHILD_SETTING_INHERITANCE_DUPLICATE) {
-        $scss .= theme_boost_union_get_extra_scss(\core\output\theme_config::load('boost_union'));
-    }
 
     /**********************************************************
      * EXTENSION POINT:
