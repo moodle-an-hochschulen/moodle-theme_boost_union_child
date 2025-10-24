@@ -28,8 +28,8 @@
 
 require_once(__DIR__ . '/../../../boost_union/tests/behat/behat_theme_boost_union_behat_mod_quiz.php');
 
-use Behat\Gherkin\Node\TableNode as TableNode;
-use Behat\Mink\Exception\ExpectationException as ExpectationException;
+use Behat\Gherkin\Node\TableNode;
+use Behat\Mink\Exception\ExpectationException;
 
 /**
  * Quiz-related step definition overrides for the Boost Union Child theme.

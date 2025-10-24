@@ -28,10 +28,10 @@
 
 require_once(__DIR__ . '/../../../boost_union/tests/behat/behat_theme_boost_union_behat_course.php');
 
-use Behat\Gherkin\Node\TableNode as TableNode,
-    Behat\Mink\Exception\ExpectationException as ExpectationException,
-    Behat\Mink\Exception\DriverException as DriverException,
-    Behat\Mink\Exception\ElementNotFoundException as ElementNotFoundException;
+use Behat\Gherkin\Node\TableNode,
+    Behat\Mink\Exception\ExpectationException,
+    Behat\Mink\Exception\DriverException,
+    Behat\Mink\Exception\ElementNotFoundException;
 
 /**
  * Course-related step definition overrides for the Boost Union Child theme.

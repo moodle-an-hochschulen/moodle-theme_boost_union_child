@@ -28,7 +28,7 @@
 
 require_once(__DIR__ . '/../../../boost_union/tests/behat/behat_theme_boost_union_behat_blocks.php');
 
-use Behat\Mink\Exception\ElementNotFoundException as ElementNotFoundException;
+use Behat\Mink\Exception\ElementNotFoundException;
 
 /**
  * Blocks-related step definition overrides for the Boost Union Child theme.

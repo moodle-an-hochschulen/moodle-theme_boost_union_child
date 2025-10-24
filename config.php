@@ -39,7 +39,7 @@ require_once($CFG->dirroot . '/theme/boost_union_child/locallib.php');
 
 // Next, we overwrite only the settings which differ between Boost Union and Boost Union Child.
 $THEME->name = 'boost_union_child';
-$THEME->scss = function($theme) {
+$THEME->scss = function ($theme) {
     return theme_boost_union_child_get_main_scss_content($theme);
 };
 $THEME->parents = ['boost_union', 'boost'];

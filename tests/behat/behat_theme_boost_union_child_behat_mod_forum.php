@@ -28,7 +28,7 @@
 
 require_once(__DIR__ . '/../../../boost_union/tests/behat/behat_theme_boost_union_behat_mod_forum.php');
 
-use Behat\Gherkin\Node\TableNode as TableNode;
+use Behat\Gherkin\Node\TableNode;
 
 /**
  * Forum-related step definition overrides for the Boost Union Child theme.

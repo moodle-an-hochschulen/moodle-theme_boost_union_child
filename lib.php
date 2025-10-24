@@ -151,7 +151,7 @@ function theme_boost_union_child_alter_css_urls(&$urls) {
     global $CFG;
 
     // Require Boost Union library.
-    require_once($CFG->dirroot.'/theme/boost_union/lib.php');
+    require_once($CFG->dirroot . '/theme/boost_union/lib.php');
 
     // Call Boost Union's theme_boost_union_alter_css_urls() function which implements the logic to change the CSS URL for flavours.
     theme_boost_union_alter_css_urls($urls);

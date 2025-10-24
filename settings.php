@@ -27,7 +27,6 @@ use theme_boost_union\admin_settingspage_tabs_with_tertiary;
 defined('MOODLE_INTERNAL') || die();
 
 if ($hassiteconfig || has_capability('theme/boost_union:configure', context_system::instance())) {
-
     // How this file works:
     // Boost Union's settings are divided into multiple settings pages which resides in its own settings category.
     // You will understand it as soon as you look at /theme/boost_union/settings.php.
@@ -47,16 +46,16 @@ if ($hassiteconfig || has_capability('theme/boost_union:configure', context_syst
     if (!$ADMIN->fulltree) {
         // Create Boost Union Child settings page
         // (and allow users with the theme/boost_union:configure capability to access it).
-        $tab = new admin_settingpage('theme_boost_union_child',
-                get_string('configtitle', 'theme_boost_union_child', null, true),
-                'theme/boost_union:configure');
+        $tab = new admin_settingpage(
+            'theme_boost_union_child',
+            get_string('configtitle', 'theme_boost_union_child', null, true),
+            'theme/boost_union:configure'
+        );
         $ADMIN->add('theme_boost_union', $tab);
-    }
 
-    // Create full settings page structure.
-    // phpcs:disable moodle.ControlStructures.ControlSignature.Found
-    else if ($ADMIN->fulltree) {
-
+        // Create full settings page structure.
+        // phpcs:disable moodle.ControlStructures.ControlSignature.Found
+    } else if ($ADMIN->fulltree) {
         // Require the necessary libraries.
         require_once($CFG->dirroot . '/theme/boost_union/lib.php');
         require_once($CFG->dirroot . '/theme/boost_union/locallib.php');
@@ -71,14 +70,18 @@ if ($hassiteconfig || has_capability('theme/boost_union:configure', context_syst
 
         // Create Boost Union Child settings page with tabs and tertiary navigation
         // (and allow users with the theme/boost_union:configure capability to access it).
-        $page = new admin_settingspage_tabs_with_tertiary('theme_boost_union_child',
-                get_string('configtitle', 'theme_boost_union_child', null, true),
-                'theme/boost_union:configure');
+        $page = new admin_settingspage_tabs_with_tertiary(
+            'theme_boost_union_child',
+            get_string('configtitle', 'theme_boost_union_child', null, true),
+            'theme/boost_union:configure'
+        );
 
 
         // Create general settings tab.
-        $tab = new admin_settingpage('theme_boost_union_child_general',
-                get_string('generalsettings', 'theme_boost', null, true));
+        $tab = new admin_settingpage(
+            'theme_boost_union_child_general',
+            get_string('generalsettings', 'theme_boost', null, true)
+        );
 
         // Create inheritance heading.
         $name = 'theme_boost_union_child/inheritanceheading';
@@ -97,20 +100,30 @@ if ($hassiteconfig || has_capability('theme/boost_union:configure', context_syst
         // Setting: Pre SCSS inheritance setting.
         $name = 'theme_boost_union_child/prescssinheritance';
         $title = get_string('prescssinheritancesetting', 'theme_boost_union_child', null, true);
-        $description = get_string('prescssinheritancesetting_desc', 'theme_boost_union_child', null, true).'<br />'.
+        $description = get_string('prescssinheritancesetting_desc', 'theme_boost_union_child', null, true) . '<br />' .
                 get_string('inheritanceoptionsexplanation', 'theme_boost_union_child', null, true);
-        $setting = new admin_setting_configselect($name, $title, $description,
-                THEME_BOOST_UNION_CHILD_SETTING_INHERITANCE_INHERIT, $inheritanceoptions);
+        $setting = new admin_setting_configselect(
+            $name,
+            $title,
+            $description,
+            THEME_BOOST_UNION_CHILD_SETTING_INHERITANCE_INHERIT,
+            $inheritanceoptions
+        );
         $setting->set_updatedcallback('theme_reset_all_caches');
         $tab->add($setting);
 
         // Setting: Extra SCSS inheritance setting.
         $name = 'theme_boost_union_child/extrascssinheritance';
         $title = get_string('extrascssinheritancesetting', 'theme_boost_union_child', null, true);
-        $description = get_string('extrascssinheritancesetting_desc', 'theme_boost_union_child', null, true).'<br />'.
+        $description = get_string('extrascssinheritancesetting_desc', 'theme_boost_union_child', null, true) . '<br />' .
                 get_string('inheritanceoptionsexplanation', 'theme_boost_union_child', null, true);
-        $setting = new admin_setting_configselect($name, $title, $description,
-                THEME_BOOST_UNION_CHILD_SETTING_INHERITANCE_INHERIT, $inheritanceoptions);
+        $setting = new admin_setting_configselect(
+            $name,
+            $title,
+            $description,
+            THEME_BOOST_UNION_CHILD_SETTING_INHERITANCE_INHERIT,
+            $inheritanceoptions
+        );
         $setting->set_updatedcallback('theme_reset_all_caches');
         $tab->add($setting);
 
