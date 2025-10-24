@@ -6,6 +6,7 @@ Changes
 
 ### Rolling release
 
+* 2025-10-15 - Tests: Switch Github actions workflows to reusable workflows by Moodle an Hochschulen e.V.
 * 2025-05-25 - Raise version and dependency to Boost Union 5.0
 * 2025-05-25 - Change Moodle-Plugin-CI to run on Moodle Core 5.0
 * 2025-05-25 - Adopt the screenshot for the theme overview page from Boost Union.
