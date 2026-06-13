@@ -6,6 +6,7 @@ Changes
 
 ### Rolling release
 
+* 2026-06-13 - Update moodle-plugin-ci.yml to match Boost Union's state
 * 2026-01-03 - Add example branch which shows how to modify a mustache template from Boost Union.
 * 2025-10-15 - Make codechecker happy again
 * 2025-10-15 - Tests: Switch Github actions workflows to reusable workflows by Moodle an Hochschulen e.V.

@@ -42,5 +42,5 @@ jobs:
         rm -rf plugin/tests/behatbu
       pr-check-diff-does-not-contain: "theme->settings->"
       behat-suite: "boost_union_child"
-      behat-timeout: 3 # Required for theme_boost_union_general.feature
+      behat-slices: 4
       behat-tags: "@theme_boost_union,@theme_boost_union_child"
