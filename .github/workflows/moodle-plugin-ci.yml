@@ -40,6 +40,15 @@ jobs:
         # Move the modified Boost Union feature files to the Boost Union Child Behat test directory.
         mv plugin/tests/behatbu/*.feature plugin/tests/behat/
         rm -rf plugin/tests/behatbu
+        # Adjust the steps which select the active theme by its human-readable name to "Boost Union Child".
+        # As all these features run on the Boost Union Child theme, steps which match against the currently
+        # active theme (like the user tour theme filter, which compares against $PAGE->theme->name) must point
+        # to "Boost Union Child", otherwise they would not match and the scenarios would fail.
+        # Caution: We must NOT replace every "Boost Union" occurrence, as most of them are real UI labels of
+        # the (parent) Boost Union plugin pages (e.g. "Boost Union settings overview", "Boost Union built-in")
+        # which keep their name even when the active theme is Boost Union Child. We therefore only rewrite the
+        # specific theme-selection steps.
+        sed -i 's/I set the field "id_filter_theme" to "Boost Union"/I set the field "id_filter_theme" to "Boost Union Child"/' plugin/tests/behat/*.feature
       pr-check-diff-does-not-contain: "theme->settings->"
       behat-suite: "boost_union_child"
       behat-slices: 4
